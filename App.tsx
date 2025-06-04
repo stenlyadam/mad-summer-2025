@@ -6,7 +6,12 @@ const App = () => {
   return (
     //JSX
     <View>
-      <Text style={style.text}>Hello World</Text>
+      <View style={style.container}>
+        <Text style={style.text}>Hello World</Text>
+      </View>
+      <View style={style.container}>
+        <Text style={style.text}>Hello World</Text>
+      </View>
     </View>
   );
 };
@@ -14,8 +19,12 @@ const App = () => {
 export default App;
 
 const style = StyleSheet.create({
+  container: {
+    backgroundColor: 'red',
+  },
   text: {
     fontSize: 30,
     textAlign: 'center',
+    color: 'yellow',
   },
 });
