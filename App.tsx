@@ -10,6 +10,10 @@ const App = () => {
         <Text style={style.text}>Basic React Native</Text>
       </View>
       <Image style={style.img1} source={require('./assets/foto.jpg')} />
+      <Image
+        style={style.img1}
+        source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+      />
     </View>
   );
 };
