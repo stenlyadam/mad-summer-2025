@@ -1,11 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 
 //Komponen adalah fungsi yg mengembalikan JSX
 const App = () => {
   return (
     //JSX
-    <View>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={style.container}>
         <Text style={style.text}>Basic React Native</Text>
       </View>
@@ -20,7 +27,12 @@ const App = () => {
           uri: 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
         }}
       />
-    </View>
+      <View>
+        <TextInput style={style.input} placeholder="Masukan nama anda" />
+        <TextInput style={style.input} placeholder="Masukan nama anda" />
+        <TextInput style={style.input} placeholder="Masukan nama anda" />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -38,5 +50,13 @@ const style = StyleSheet.create({
   img1: {
     height: 200,
     width: 150,
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: '#000000',
+    fontSize: 20,
+    margin: 20,
+    padding: 30,
+    borderRadius: 10,
   },
 });
