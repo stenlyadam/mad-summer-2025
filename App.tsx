@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 
 //Komponen adalah fungsi yg mengembalikan JSX
@@ -32,6 +33,9 @@ const App = () => {
         <TextInput style={style.input} placeholder="Masukan nama anda" />
         <TextInput style={style.input} placeholder="Masukan nama anda" />
       </View>
+      <TouchableOpacity style={style.button} activeOpacity={0.5}>
+        <Text style={style.buttonText}>Submit</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -58,5 +62,16 @@ const style = StyleSheet.create({
     margin: 20,
     padding: 30,
     borderRadius: 10,
+  },
+  button: {
+    backgroundColor: 'blue',
+    paddingVertical: 30,
+    borderRadius: 20,
+    margin: 20,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontSize: 25,
   },
 });
