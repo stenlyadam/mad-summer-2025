@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 //Komponen adalah fungsi yg mengembalikan JSX
 const App = () => {
@@ -7,11 +7,9 @@ const App = () => {
     //JSX
     <View>
       <View style={style.container}>
-        <Text style={style.text}>Hello World</Text>
+        <Text style={style.text}>Basic React Native</Text>
       </View>
-      <View style={style.container}>
-        <Text style={style.text}>Hello World</Text>
-      </View>
+      <Image style={style.img1} source={require('./assets/foto.jpg')} />
     </View>
   );
 };
@@ -26,5 +24,9 @@ const style = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     color: 'yellow',
+  },
+  img1: {
+    height: 200,
+    width: 150,
   },
 });
