@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import TextInput from './components/TextInput';
+import Button from './components/Button';
 
 const Login = () => {
   return (
@@ -8,9 +9,8 @@ const Login = () => {
       <Text style={styles.title}>Welcome</Text>
       <TextInput placeholder="Masukan email anda" />
       <TextInput placeholder="Masukan password anda" />
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </TouchableOpacity>
+      <Button text="Sign In" />
+      <Button text="Create new account" />
     </View>
   );
 };
@@ -28,17 +28,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     marginBottom: 40,
-  },
-  button: {
-    backgroundColor: 'orange',
-    height: 45,
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 12,
   },
 });
