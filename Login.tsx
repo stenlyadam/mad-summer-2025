@@ -8,7 +8,7 @@ const Login = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
       <TextInput placeholder="Masukan email anda" />
-      <TextInput placeholder="Masukan password anda" />
+      <TextInput placeholder="Masukan password anda" secureTextEntry={true} />
       <Button text="Sign In" />
       <Button text="Create new account" color="grey" textColor="white" />
     </View>

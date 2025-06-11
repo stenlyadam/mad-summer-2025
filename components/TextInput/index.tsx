@@ -1,8 +1,8 @@
 import React from 'react';
 import {TextInput as Input, StyleSheet} from 'react-native';
 
-const TextInput = ({placeholder}) => {
-  return <Input style={styles.input} placeholder={placeholder} />;
+const TextInput = ({placeholder, ...rest}) => {
+  return <Input style={styles.input} placeholder={placeholder} {...rest} />;
 };
 
 export default TextInput;
