@@ -1,10 +1,10 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-const Button = ({text}) => {
+const Button = ({text, color = 'orange', textColor = 'black'}) => {
   return (
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>{text}</Text>
+    <TouchableOpacity style={styles.button(color)}>
+      <Text style={styles.buttonText(textColor)}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -12,16 +12,16 @@ const Button = ({text}) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'orange',
+  button: color => ({
+    backgroundColor: color,
     height: 45,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-  },
-  buttonText: {
-    color: 'white',
+  }),
+  buttonText: textColor => ({
+    color: textColor,
     fontSize: 12,
-  },
+  }),
 });

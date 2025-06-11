@@ -10,7 +10,7 @@ const Login = () => {
       <TextInput placeholder="Masukan email anda" />
       <TextInput placeholder="Masukan password anda" />
       <Button text="Sign In" />
-      <Button text="Create new account" />
+      <Button text="Create new account" color="grey" textColor="white" />
     </View>
   );
 };
