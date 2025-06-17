@@ -11,4 +11,4 @@ import Login from './Login';
 import Flexbox from './Flexbox';
 import RestApi from './RestApi';
 
-AppRegistry.registerComponent(appName, () => RestApi);
+AppRegistry.registerComponent(appName, () => App);
