@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import Logo from '../../assets/Logo.svg';
 
 const SplashScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Money Tracker</Text>
+      <Logo />
+      <Text style={styles.text}>Money Tracker</Text>
     </View>
   );
 };
@@ -17,5 +19,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    fontSize: 32,
+    fontFamily: 'Poppins-Medium',
   },
 });
