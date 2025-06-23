@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {BackButton} from '../../../assets';
+import {BackButton, Logo} from '../../../assets';
 
 const Button = ({
   text,
@@ -8,10 +8,11 @@ const Button = ({
   buttonColor = '#020202',
   iconOnly,
   icon,
+  onPress,
 }) => {
   if (iconOnly) {
     return (
-      <TouchableOpacity activeOpacity={0.5}>
+      <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
         <View style={styles.buttonContainer}>
           {icon === 'back' && <BackButton />}
         </View>
@@ -19,7 +20,10 @@ const Button = ({
     );
   } else {
     return (
-      <TouchableOpacity style={styles.button(color)} activeOpacity={0.5}>
+      <TouchableOpacity
+        style={styles.button(color)}
+        activeOpacity={0.5}
+        onPress={onPress}>
         <Text style={styles.buttonText(buttonColor)}>{text}</Text>
       </TouchableOpacity>
     );

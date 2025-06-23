@@ -2,11 +2,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Button} from '../../atoms';
 
-const Header = ({text, backButton}) => {
+const Header = ({text, backButton, onPress}) => {
   if (backButton) {
     return (
       <View style={styles.container}>
-        <Button iconOnly={true} icon="back" />
+        <Button iconOnly={true} icon="back" onPress={onPress} />
         <Text style={styles.text}>{text}</Text>
       </View>
     );

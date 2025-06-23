@@ -4,10 +4,14 @@ import {Header, TextInput} from '../../components/molecules';
 import {Button, Gap} from '../../components/atoms';
 import {NullPhoto} from '../../assets';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   return (
     <View style={styles.pageContainer}>
-      <Header text="Sign Up" backButton={true} />
+      <Header
+        text="Sign Up"
+        backButton={true}
+        onPress={() => navigation.goBack()}
+      />
       <View style={styles.contentContainer}>
         <View style={styles.profileContainer}>
           <View style={styles.profileBorder}>
@@ -26,7 +30,7 @@ const SignUp = () => {
         <Gap height={16} />
         <TextInput text="Password" placeholder="Enter your password" />
         <Gap height={24} />
-        <Button text="Continue" />
+        <Button text="Continue" onPress={() => navigation.navigate('SignIn')} />
         <Gap height={12} />
       </View>
     </View>
