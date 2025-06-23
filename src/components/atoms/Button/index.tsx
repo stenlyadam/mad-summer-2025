@@ -1,12 +1,29 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {BackButton} from '../../../assets';
 
-const Button = ({text, color = '#02CF8E', buttonColor = '#020202'}) => {
-  return (
-    <TouchableOpacity style={styles.button(color)} activeOpacity={0.5}>
-      <Text style={styles.buttonText(buttonColor)}>{text}</Text>
-    </TouchableOpacity>
-  );
+const Button = ({
+  text,
+  color = '#02CF8E',
+  buttonColor = '#020202',
+  iconOnly,
+  icon,
+}) => {
+  if (iconOnly) {
+    return (
+      <TouchableOpacity activeOpacity={0.5}>
+        <View style={styles.buttonContainer}>
+          {icon === 'back' && <BackButton />}
+        </View>
+      </TouchableOpacity>
+    );
+  } else {
+    return (
+      <TouchableOpacity style={styles.button(color)} activeOpacity={0.5}>
+        <Text style={styles.buttonText(buttonColor)}>{text}</Text>
+      </TouchableOpacity>
+    );
+  }
 };
 
 export default Button;
@@ -23,4 +40,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: 14,
   }),
+  buttonContainer: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

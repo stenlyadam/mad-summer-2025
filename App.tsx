@@ -5,7 +5,7 @@ import SignUp from './src/pages/SignUp';
 import Home from './src/pages/Home';
 
 const App = () => {
-  return <Home />;
+  return <SignUp />;
 };
 
 export default App;
