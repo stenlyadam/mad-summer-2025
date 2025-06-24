@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {NullPhoto} from '../../assets';
 import {Button, Gap} from '../../components/atoms';
 import {Header, TextInput} from '../../components/molecules';
@@ -7,7 +13,15 @@ import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 
 const SignUp = ({navigation}) => {
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [based64, setbased64] = useState('');
   const [photo, setPhoto] = useState(NullPhoto);
+
+  const registerNewUser = () => {
+    console.log({fullName, email, password, based64});
+  };
 
   const getImage = async () => {
     const result = await launchCamera({
@@ -26,12 +40,13 @@ const SignUp = ({navigation}) => {
     } else {
       const data = result.assets[0];
       const photoBased64 = `data:${data.type};base64, ${data.base64}`;
+      setbased64(photoBased64);
       setPhoto({uri: photoBased64});
     }
   };
 
   return (
-    <View style={styles.pageContainer}>
+    <ScrollView style={styles.pageContainer}>
       <Header
         text="Sign Up"
         backButton={true}
@@ -46,19 +61,29 @@ const SignUp = ({navigation}) => {
           </View>
         </View>
         <Gap height={26} />
-        <TextInput text="Full Name" placeholder="Enter your full name" />
+        <TextInput
+          text="Full Name"
+          placeholder="Enter your full name"
+          onChangeText={e => setFullName(e)}
+        />
         <Gap height={26} />
         <TextInput
           text="Email Address"
           placeholder="Enter your email address"
+          onChangeText={e => setEmail(e)}
         />
         <Gap height={16} />
-        <TextInput text="Password" placeholder="Enter your password" />
+        <TextInput
+          text="Password"
+          placeholder="Enter your password"
+          secureTextEntry={true}
+          onChangeText={e => setPassword(e)}
+        />
         <Gap height={24} />
-        <Button text="Continue" onPress={() => navigation.navigate('SignIn')} />
+        <Button text="Continue" onPress={registerNewUser} />
         <Gap height={12} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
