@@ -1,10 +1,22 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {Header, TextInput} from '../../components/molecules';
-import {Button, Gap} from '../../components/atoms';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {NullPhoto} from '../../assets';
+import {Button, Gap} from '../../components/atoms';
+import {Header, TextInput} from '../../components/molecules';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const SignUp = ({navigation}) => {
+  const getImage = async () => {
+    const result = await launchImageLibrary({
+      maxHeight: 100,
+      maxWidth: 100,
+      quality: 0.5,
+      includeBase64: true,
+      mediaType: 'photo',
+    });
+    console.log(result);
+  };
+
   return (
     <View style={styles.pageContainer}>
       <Header
@@ -15,7 +27,7 @@ const SignUp = ({navigation}) => {
       <View style={styles.contentContainer}>
         <View style={styles.profileContainer}>
           <View style={styles.profileBorder}>
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity activeOpacity={0.5} onPress={getImage}>
               <Image source={NullPhoto} />
             </TouchableOpacity>
           </View>
