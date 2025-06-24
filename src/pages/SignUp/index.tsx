@@ -22,6 +22,7 @@ const SignUp = ({navigation}) => {
         message: 'Ambil foto dibatalkan',
         type: 'danger',
       });
+      setPhoto(NullPhoto);
     } else {
       const data = result.assets[0];
       const photoBased64 = `data:${data.type};base64, ${data.base64}`;
