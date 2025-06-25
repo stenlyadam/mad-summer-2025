@@ -13,6 +13,7 @@ const firebaseConfig = {
   storageBucket: 'mtdemosummer2025.firebasestorage.app',
   messagingSenderId: '374250257604',
   appId: '1:374250257604:web:1937864ec1e942ceaa1d91',
+  databaseURL: 'https://mtdemosummer2025-default-rtdb.firebaseio.com/',
 };
 
 // Initialize Firebase

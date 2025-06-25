@@ -5,8 +5,9 @@ import SignUp from './src/pages/SignUp';
 import Home from './src/pages/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import FlashMessage from 'react-native-flash-message';
+
+import './src/config/Firebase';
 
 const Stack = createNativeStackNavigator();
 
