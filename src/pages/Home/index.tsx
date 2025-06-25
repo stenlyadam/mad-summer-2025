@@ -1,38 +1,66 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Button, Gap} from '../../components/atoms';
 import {DummyPhoto} from '../../assets';
+import {getDatabase, ref, child, get, onValue} from 'firebase/database';
+import {Loading} from '../../components/molecules';
 
-const Home = () => {
+const Home = ({route}) => {
+  const [photo, setPhoto] = useState(DummyPhoto);
+  const [fullName, setFullName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const {uid} = route.params;
+  useEffect(() => {
+    setLoading(true);
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users/${uid}`))
+      .then(snapshot => {
+        setLoading(false);
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          setPhoto({uri: data.photo});
+          setFullName(data.fullName);
+        } else {
+          console.log('No data available');
+        }
+      })
+      .catch(error => {
+        setLoading(false);
+        console.error(error);
+      });
+  }, []);
   return (
-    <View style={styles.pageContainer}>
-      <View style={styles.headerContainer}>
-        <View>
-          <Text style={styles.appTitle}>{`Hi, John Doe`}</Text>
-          <Text style={styles.appSubTitle}>
-            Have you track your money today?
-          </Text>
+    <>
+      <View style={styles.pageContainer}>
+        <View style={styles.headerContainer}>
+          <View>
+            <Text style={styles.appTitle}>{`Hi, ${fullName}`}</Text>
+            <Text style={styles.appSubTitle}>
+              Have you track your money today?
+            </Text>
+          </View>
+          <Image source={photo} style={styles.photo} />
         </View>
-        <Image source={DummyPhoto} style={styles.photo} />
+        <View style={styles.contentWrapper}>
+          <Text style={styles.subTitle}>Your Balance</Text>
+          <Text style={styles.totalBalance}>Rp. 10.000.000</Text>
+          <View style={styles.line} />
+          <View style={styles.subTotalWrapper}>
+            <Text style={styles.subTotal}>Cash On Hand</Text>
+            <Text style={styles.subTotal}>Rp. 4.000.000</Text>
+          </View>
+          <View style={styles.subTotalWrapper}>
+            <Text style={styles.subTotal}>Cash On Bank</Text>
+            <Text style={styles.subTotal}>Rp. 6.000.000</Text>
+          </View>
+          <Text style={styles.subTitle}>Add Transaction</Text>
+          <Button text="Cash On Hand" />
+          <Gap height={10} />
+          <Button text="Cash On Bank" />
+        </View>
       </View>
-      <View style={styles.contentWrapper}>
-        <Text style={styles.subTitle}>Your Balance</Text>
-        <Text style={styles.totalBalance}>Rp. 10.000.000</Text>
-        <View style={styles.line} />
-        <View style={styles.subTotalWrapper}>
-          <Text style={styles.subTotal}>Cash On Hand</Text>
-          <Text style={styles.subTotal}>Rp. 4.000.000</Text>
-        </View>
-        <View style={styles.subTotalWrapper}>
-          <Text style={styles.subTotal}>Cash On Bank</Text>
-          <Text style={styles.subTotal}>Rp. 6.000.000</Text>
-        </View>
-        <Text style={styles.subTitle}>Add Transaction</Text>
-        <Button text="Cash On Hand" />
-        <Gap height={10} />
-        <Button text="Cash On Bank" />
-      </View>
-    </View>
+      {loading && <Loading />}
+    </>
   );
 };
 

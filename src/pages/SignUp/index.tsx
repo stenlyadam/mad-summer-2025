@@ -11,6 +11,8 @@ import {Button, Gap} from '../../components/atoms';
 import {Header, TextInput} from '../../components/molecules';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import {getDatabase, ref, set} from 'firebase/database';
 
 const SignUp = ({navigation}) => {
   const [fullName, setFullName] = useState('');
@@ -20,7 +22,32 @@ const SignUp = ({navigation}) => {
   const [photo, setPhoto] = useState(NullPhoto);
 
   const registerNewUser = () => {
-    console.log({fullName, email, password, based64});
+    // console.log({fullName, email, password, based64});
+    const auth = getAuth();
+    const db = getDatabase();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        // Signed up
+        const user = userCredential.user;
+        //Simpan data di realtime database
+        set(ref(db, 'users/' + user.uid), {
+          fullName: fullName,
+          email: email,
+          photo: based64,
+        });
+
+        showMessage({
+          message: 'Akun anda berhasil di daftarkan',
+          type: 'success',
+        });
+        navigation.navigate('SignIn');
+      })
+      .catch(error => {
+        showMessage({
+          message: error.message,
+          type: 'danger',
+        });
+      });
   };
 
   const getImage = async () => {
